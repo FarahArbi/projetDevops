@@ -6,7 +6,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.3</version>
-		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tn</groupId>
 	<artifactId>achat</artifactId>
@@ -55,13 +54,14 @@
 		</dependency>
 
 	</dependencies>
-<distributionManagement>
-<repository>
-<id>deploymentRepo</id>
-<name>Nexus Repository</name>
-<url>http://localhost:8081/repository/maven-releases/</url>
-</repository>
-</distributionManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<name>Nexus Repository</name>
+			<url>http://localhost:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 	
 	<build>
 		<plugins>
@@ -81,4 +81,3 @@
 	</build>
 
 </project>
-
