@@ -36,5 +36,13 @@ public class Stock implements Serializable {
 		this.qte = qte;
 		this.qteMin = qteMin;
 	}
+	public String getLibelleStock() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String getQteMin() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

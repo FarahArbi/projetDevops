@@ -47,6 +47,10 @@ public class Produit implements Serializable {
 	@ManyToOne
 	@JsonIgnore
 	private CategorieProduit categorieProduit;
+	public void setStock(Stock stock2) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 
