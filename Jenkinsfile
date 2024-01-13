@@ -24,12 +24,7 @@ pipeline {
             }
         }
 
-           stage('Nexus') {
-            steps {
-                echo 'Déployer vers Nexus (with tests skipped)'
-                sh 'mvn deploy -DskipTests'
-            }
-        }
+        
         
     }
     
