@@ -9,4 +9,5 @@ pipeline {
                 url: 'https://github.com/FarahArbi/projetDevops.git'
             }
         }
+    }
 }
