@@ -23,6 +23,14 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.host.url=http://sonarqube:9000'
             }
         }
+
+           stage('Nexus') {
+            steps {
+                echo 'Déployer vers Nexus (with tests skipped)'
+                sh 'mvn deploy -DskipTests'
+            }
+        }
+        
     }
     
 }
