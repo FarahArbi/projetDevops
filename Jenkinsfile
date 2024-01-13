@@ -9,10 +9,10 @@ pipeline {
                 url: 'https://github.com/FarahArbi/projetDevops.git'
             }
         }
-          stage('Compilation') {
+         stage('SonarQube') {
             steps {
-                echo 'Compiler avec Maven'
-                'mvn clean compile'
+                echo 'container SonarQube'
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonarqube'
             }
         }
     }
