@@ -9,6 +9,15 @@ pipeline {
                 url: 'https://github.com/FarahArbi/projetDevops.git'
             }
         }
+        
+        stage('Install Maven') {
+            steps {
+                script {
+                    sh 'apt-get update && apt-get install -y maven'
+                }
+            }
+        }
+        
          stage('SonarQube') {
             steps {
                 echo 'container SonarQube'
