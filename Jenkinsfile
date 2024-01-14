@@ -23,7 +23,6 @@ pipeline {
                 sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar -Dsonar.host.url=http://sonarqube:9000'
             }
         }
-
             stage('nexus') {
             steps {
                 sh 'mvn package'
@@ -31,12 +30,7 @@ pipeline {
             }
         }
 
-         stage('docker-compose') {
-            steps {
-                sh 'docker ps'
-            }
-        }
-
+        
         
     }
     
