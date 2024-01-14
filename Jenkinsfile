@@ -35,9 +35,10 @@ pipeline {
                 echo 'Building and pushing Docker images'
                  // Build Spring Boot project Docker image
             script {
-                    // Install Docker in the Jenkins container
-                    sh 'apt-get update'
-                    sh 'apt-get install -y docker.io'
+                 // Install Docker in the Jenkins container
+                    sh 'sudo apt-get update'
+                    sh 'sudo apt-get install -y docker.io'
+                    sh 'docker --version'
 
                     // Build and push Docker images
                     def imageName = 'springboot-devops'
