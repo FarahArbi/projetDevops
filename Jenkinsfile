@@ -26,8 +26,7 @@ pipeline {
             stage('nexus') {
             steps {
                 sh 'mvn package'
-                nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: 'target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'tn', nexusUrl: 'nexus:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '1.0'
-            }
+                nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: 'target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'tn', nexusUrl: 'nexus:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '1.0'            }
         }
 
         stage('Build and Push Docker Images') {
@@ -35,11 +34,6 @@ pipeline {
                 echo 'Building and pushing Docker images'
                  // Build Spring Boot project Docker image
             script {
-                 // Install Docker in the Jenkins container
-                    sh 'sudo apt-get update'
-                    sh 'sudo apt-get install -y docker.io'
-                    sh 'docker --version'
-
                     // Build and push Docker images
                     def imageName = 'springboot-devops'
                     sh "mvn package"
