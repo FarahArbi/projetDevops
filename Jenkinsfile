@@ -30,8 +30,21 @@ pipeline {
             }
         }
 
-        
-        
+        stage('Build and Push Docker Images') {
+            steps {
+                echo 'Building and pushing Docker images'
+                 // Build Spring Boot project Docker image
+            script {
+                def imageName = 'springboot-devops'
+                sh "mvn package"
+                sh "docker build -t $imageName ."
+                sh "docker tag $imageName faraharbi/$imageName:latest"
+                sh "docker login -u faraharbi -p dckr_pat_UUq3d58bRGZ0-L8c5S9e811Iuoo"
+                sh "docker push faraharbi/$imageName:latest"
+               }
+            }
+        }
+   
     }
     
 }
