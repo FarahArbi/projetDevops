@@ -30,6 +30,14 @@ pipeline {
                 nexusArtifactUploader artifacts: [[artifactId: 'achat', classifier: '', file: 'target/achat-1.0.jar', type: 'jar']], credentialsId: 'nexus', groupId: 'tn', nexusUrl: 'nexus:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '1.0'
             }
         }
+
+         stage('docker-compose') {
+            steps {
+                sh 'docker ps'
+            }
+        }
+
+        
     }
     
 }
