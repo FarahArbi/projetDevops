@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        SLACK_CHANNEL = '#notification-slack'
-        SLACK_TOKEN = credentials('SRh8nQPiMIrH5aaXGIN0m2Ix') 
-    }
-
     stages {
         stage('GIT') {
             steps {
@@ -39,7 +34,9 @@ pipeline {
         stage('Build and Push Docker Images') {
             steps {
                 echo 'Building and pushing Docker images'
+                // Build Spring Boot project Docker image
                 script {
+                    // Build and push Docker images
                     def imageName = 'springboot-devops'
                     sh "mvn package"
                     sh "docker build -t $imageName ."
@@ -56,5 +53,5 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
-    }     
+    }
 }
