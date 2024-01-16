@@ -58,13 +58,17 @@ pipeline {
         }
     }
 
-    post {
+        post {
         always {
             slackSend(
                 channel: env.SLACK_CHANNEL,
-                color: 'good',
-                message: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}' has completed successfully!",
-                tokenCredentialId: env.SLACK_TOKEN
+                tokenCredentialId: env.SLACK_TOKEN,
+                success: {
+                    slackSend color: '#36a64f', message: "Deployment of myapp to production succeeded!"
+                },
+                failure: {
+                    slackSend color: '#ff0000', message: "Deployment of myapp to production failed!"
+                }
             )
         }
     }
