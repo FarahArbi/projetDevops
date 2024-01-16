@@ -56,20 +56,5 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
-    }
-
-        post {
-        always {
-            slackSend(
-                channel: env.SLACK_CHANNEL,
-                tokenCredentialId: env.SLACK_TOKEN,
-                success: {
-                    slackSend color: '#36a64f', message: "Deployment of myapp to production succeeded!"
-                },
-                failure: {
-                    slackSend color: '#ff0000', message: "Deployment of myapp to production failed!"
-                }
-            )
-        }
-    }
+    }     
 }
