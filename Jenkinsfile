@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        SLACK_CHANNEL = '#your-slack-channel'
+        SLACK_TOKEN = credentials('your-slack-credentials-id') // Replace with your Slack credentials ID
+    }
+
     stages {
         stage('GIT') {
             steps {
@@ -34,9 +39,7 @@ pipeline {
         stage('Build and Push Docker Images') {
             steps {
                 echo 'Building and pushing Docker images'
-                // Build Spring Boot project Docker image
                 script {
-                    // Build and push Docker images
                     def imageName = 'springboot-devops'
                     sh "mvn package"
                     sh "docker build -t $imageName ."
@@ -52,6 +55,17 @@ pipeline {
                 echo 'Running Docker Compose'
                 sh 'docker-compose up -d'
             }
+        }
+    }
+
+    post {
+        always {
+            slackSend(
+                channel: env.projetdevops-siege,
+                color: 'good',
+                message: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}' has completed successfully!",
+                tokenCredentialId: env.SRh8nQPiMIrH5aaXGIN0m2Ix
+            )
         }
     }
 }
