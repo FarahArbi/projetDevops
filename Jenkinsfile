@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        SLACK_CHANNEL = '#your-slack-channel'
-        SLACK_TOKEN = credentials('your-slack-credentials-id') // Replace with your Slack credentials ID
+        SLACK_CHANNEL = '#notification-slack'
+        SLACK_TOKEN = credentials('SRh8nQPiMIrH5aaXGIN0m2Ix') 
     }
 
     stages {
@@ -61,10 +61,10 @@ pipeline {
     post {
         always {
             slackSend(
-                channel: env.projetdevops-siege,
+                channel: env.SLACK_CHANNEL,
                 color: 'good',
                 message: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}' has completed successfully!",
-                tokenCredentialId: env.SRh8nQPiMIrH5aaXGIN0m2Ix
+                tokenCredentialId: env.SLACK_TOKEN
             )
         }
     }
