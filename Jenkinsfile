@@ -46,12 +46,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Run Docker Compose') {
-            steps {
-                echo 'Running Docker Compose'
-                sh 'docker-compose up -d'
-            }
-        }
     }
 }
